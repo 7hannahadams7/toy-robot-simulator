@@ -1,4 +1,4 @@
-# ToyRobotGame
+# Toy Robot Simulator
 
 ## Introduction
 
