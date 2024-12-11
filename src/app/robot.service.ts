@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class RobotService {
   private x: number | null = null; // Horizontal position (null by default)
   private y: number | null = null; // Vertical position (null by default)
-  private direction: 'North' | 'East' | 'South' | 'West' | null = null; // Direction
+  private direction: 'NORTH' | 'EAST' | 'SOUTH' | 'WEST' | null = null; // Direction
   private gridSize = 5;
 
   getPosition() {
@@ -19,44 +19,40 @@ export class RobotService {
   placeRobot(x: number, y: number) {
     this.x = x;
     this.y = y;
-    this.direction = 'North'; // Default direction is North
-    console.log(`Robot placed at (${x}, ${y}) facing ${this.direction}`);
+    this.direction = 'NORTH'; // Default direction is North
   }
 
   moveForward() {
     if (this.x !== null && this.y !== null && this.direction !== null) {
       switch (this.direction) {
-        case 'North':
+        case 'NORTH':
           if (this.y < this.gridSize - 1) this.y++;
           break;
-        case 'East':
+        case 'EAST':
           if (this.x < this.gridSize - 1) this.x++;
           break;
-        case 'South':
+        case 'SOUTH':
           if (this.y > 0) this.y--;
           break;
-        case 'West':
+        case 'WEST':
           if (this.x > 0) this.x--;
           break;
       }
-      console.log(`Robot moved to (${this.x}, ${this.y}) facing ${this.direction}`);
     }
   }
 
-  turn(dir: 'left' | 'right') {
+  turn(dir: 'LEFT' | 'RIGHT') {
     if (this.direction !== null) {
-      const directions: Array<'North' | 'East' | 'South' | 'West'> = ['North', 'East', 'South', 'West'];
+      const directions: Array<'NORTH' | 'EAST' | 'SOUTH' | 'WEST'> = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
       const index = directions.indexOf(this.direction);
   
-      if (dir === 'left') {
+      if (dir === 'LEFT') {
         // Move one step counterclockwise
         this.direction = directions[(index + 3) % 4];
-      } else if (dir === 'right') {
+      } else if (dir === 'RIGHT') {
         // Move one step clockwise
         this.direction = directions[(index + 1) % 4];
       }
-  
-      console.log(`Robot turned ${dir}, now facing ${this.direction}`);
     }
   }
   

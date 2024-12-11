@@ -51,22 +51,29 @@ export class GameBoardComponent implements OnInit {
   moveRobot() {
     this.robotService.moveForward();
     this.updateRobotPosition();
+    console.log(`MOVE`)
   }
 
-  turnRobot(direction: 'left' | 'right') {
+  turnRobot(direction: 'LEFT' | 'RIGHT') {
     this.robotService.turn(direction);
     this.updateRobotPosition();
+    console.log(`REPORT`)
   }
 
   placeRobot(x: number, y: number) {
     // Place the robot using the RobotService
     this.robotService.placeRobot(x, y);
     this.updateRobotPosition(); // Sync robot's position with the service
+    console.log(`PLACE ${x}, ${y} ${this.robot?.direction}`);
   }
 
   generateReport() {
+    console.log(`REPORT`)
     if (this.robot) {
       this.report = `Robot is at (${this.robot.x}, ${this.robot.y}) facing ${this.robot.direction}`;
+      console.log(`Output: ${this.robot.x}, ${this.robot.y} ${this.robot?.direction}`)
+    }else{
+      console.log(`Robot not placed`)
     }
     this.showReport = true
   }  
