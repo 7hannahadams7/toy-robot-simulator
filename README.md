@@ -6,6 +6,8 @@ This project is a toy robot simular made using Angular. The user can place the r
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.4.
 
+![Game Board Example](src/assets/images/game-board-example.png)
+
 ## Given Requirements
 
 1. The tabletop has no obstructions.
