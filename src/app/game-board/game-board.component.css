@@ -1,0 +1,85 @@
+.game-board{
+    display: flex;
+    width: 794px;
+    height: 784px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: #1F2527;
+    border: 3px solid #F8CD51;
+}
+
+.grid {
+    display: grid; /* Use grid layout */
+    grid-template-rows: repeat(5, 80px); /* 5 rows, each 50px tall */
+    grid-template-columns: repeat(5, 80px); /* 5 columns, each 50px wide */
+    padding: 20px;
+    gap: 1px;
+}
+  
+  .cell {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2B3538;
+    border: 1px solid #F1F2F2; /* Gray borders for visibility */
+  }
+
+.console-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    margin: 20px;
+    height: 50px;
+    background: #2B3538; 
+    border-radius: 5px;
+}
+
+.controls {
+    display: flex; /* Flexbox for horizontal button alignment */
+    gap: 10px; /* Add spacing between buttons */
+    margin-top: 10px; /* Space between the grid and controls */
+  }
+
+/* General Button Styling */
+button {
+    padding: 10px 20px; /* Add padding for size */
+    font-size: 1rem; /* Button text size */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effects */
+    border: none; /* Remove default borders */
+  }
+  
+  /* Main Control Buttons */
+  button.main-control {
+    background-color: #4FAECB; /* Primary blue color from palette */
+    color: #1F2527; /* White text for contrast */
+  }
+  
+  /* Secondary Report Button */
+  button.secondary {
+    background-color:#2B3538; /* Dark gray background */
+    color: #F1F2F2; /* Blue text */
+    border: 2px solid #4FAECB; /* Border matches primary blue */
+  }
+  
+  
+  p {
+    margin: 20px;
+    font-size: 1rem;
+    font-family:Arial, Helvetica, sans-serif;
+    color: #F1F2F2;
+    }
+  
+  
+    .robot-image {
+        width: 80%; /* Adjust to fit the cell */
+        height: 80%; /* Adjust to fit the cell */
+        object-fit: contain; /* Ensure the image scales properly */
+      }

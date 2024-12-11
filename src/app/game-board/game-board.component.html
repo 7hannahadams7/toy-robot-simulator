@@ -1,0 +1,33 @@
+<div class="game-board">
+    <div class="console-box">
+        <p>Click to place the robot, use the buttons or arrows to move</p>
+    </div>
+<div class="grid">
+    <div *ngFor="let col of grid; let colIndex = index" class="row">
+      <div
+        *ngFor="let row of col; let rowIndex = index"
+        class="cell"
+        (click)="placeRobot(colIndex, grid.length - 1 - rowIndex)"
+        >
+        <img
+        *ngIf="robot?.x === colIndex && robot?.y === grid.length - 1 - rowIndex"
+        [src]="'assets/images/robot-' + (robot?.direction | lowercase) + '.png'"
+        alt="Robot"
+        class="robot-image"
+      />
+      
+      </div>
+    </div>
+  </div>
+  <div class="controls">
+    <button class="main-control" (click)="turnRobot('left')">Turn Left</button>
+    <button class="main-control" (click)="moveRobot()">Move</button>
+    <button class="main-control" (click)="turnRobot('right')">Turn Right</button>
+  </div>
+  <div class="controls">
+    <button class="secondary" (click)="generateReport()">Report</button>
+  </div>
+    <div class="console-box">
+        <p *ngIf="showReport">Output: {{ report }}</p>
+    </div>
+</div>
