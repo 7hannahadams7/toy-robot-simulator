@@ -13,17 +13,20 @@ describe('RobotService', () => {
     expect(service).toBeTruthy();
   });
 
+  // PLACE ROBOT
   it('should place robot at position and default to NORTH', () => {
     service.placeRobot(2,3);
     expect(service.getPosition()).toEqual({x:2, y:3, direction: "NORTH"});
   });
 
+  // MOVE
   it('should move robot forward in current direction', () => {
     service.placeRobot(2,3);
     service.moveForward();
     expect(service.getPosition()).toEqual({x:2, y:4, direction: "NORTH"});
   })
 
+  // LEFT
   it('should turn robot LEFT', () => {
     service.placeRobot(2,3);
     service.turn("LEFT");
@@ -34,11 +37,12 @@ describe('RobotService', () => {
 
     service.turn("LEFT");
     expect(service.getPosition()).toEqual({x:2, y:3, direction: "EAST"});
-    
+
     service.turn("LEFT");
     expect(service.getPosition()).toEqual({x:2, y:3, direction: "NORTH"});
   })
 
+  // RIGHT
   it('should turn robot RIGHT', () => {
     service.placeRobot(2,3);
     service.turn("RIGHT");
@@ -55,7 +59,7 @@ describe('RobotService', () => {
   });
   
 
-  /// TESTING OUT OF BOUNDS LIMITS
+  // OUT OF BOUNDS
   [
     { x: 2, y: 4, direction: 'NORTH' as 'NORTH', moveX: 2, moveY: 4 },
     { x: 2, y: 0, direction: 'SOUTH' as 'SOUTH', moveX: 2, moveY: 0 },
@@ -83,6 +87,7 @@ describe('RobotService', () => {
     });
   });
 
+  // MUST PLACE TO INTERACT
   it('should not do anything when robot is not placed', () => {
     expect(service.getPosition()).toBeNull();
 

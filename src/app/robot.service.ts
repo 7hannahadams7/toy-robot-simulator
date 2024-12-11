@@ -6,14 +6,14 @@ import { Injectable } from '@angular/core';
 export class RobotService {
   private x: number | null = null; // Horizontal position (null by default)
   private y: number | null = null; // Vertical position (null by default)
-  private direction: 'NORTH' | 'EAST' | 'SOUTH' | 'WEST' | null = null; // Direction
+  private direction: 'NORTH' | 'EAST' | 'SOUTH' | 'WEST' | null = null; // Direction (null by default)
   private gridSize = 5;
 
   getPosition() {
     if (this.x === null || this.y === null || this.direction === null) {
       return null; // Robot has not been placed
     }
-    return { x: this.x, y: this.y, direction: this.direction };
+    return { x: this.x, y: this.y, direction: this.direction }; // Return (x,y,F)
   }
 
   placeRobot(x: number, y: number) {
@@ -23,6 +23,7 @@ export class RobotService {
   }
 
   moveForward() {
+    // If placed, move robot forward but stay within grid bounds
     if (this.x !== null && this.y !== null && this.direction !== null) {
       switch (this.direction) {
         case 'NORTH':
@@ -47,10 +48,10 @@ export class RobotService {
       const index = directions.indexOf(this.direction);
   
       if (dir === 'LEFT') {
-        // Move one step counterclockwise
+        // Rotate counterclockwise, iterate one to the left
         this.direction = directions[(index + 3) % 4];
       } else if (dir === 'RIGHT') {
-        // Move one step clockwise
+        // Rotate clockwise, iterate one to the right
         this.direction = directions[(index + 1) % 4];
       }
     }

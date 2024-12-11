@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { GameBoardComponent } from './game-board/game-board.component';
-// import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',

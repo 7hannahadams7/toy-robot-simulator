@@ -24,12 +24,14 @@ describe('GameBoardComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  // GRID RENDERING
   it('should render 5x5 grid', () =>{
     const grid = fixture.nativeElement.querySelector('.grid');
     const cells = grid.querySelectorAll('.cell');
     expect(cells.length).toBe(25);
   });
 
+  // ROBOT RENDERING
   it('should show a robot when robot is placed', () => {
     component.placeRobot(2,3);
     fixture.detectChanges();
@@ -37,7 +39,9 @@ describe('GameBoardComponent', () => {
     expect(robotCell).toBeTruthy();
   });
 
+  // PLACE
   it('should place the robot in correct cell', () => {
+    // Test (0,0)
     const cells = fixture.nativeElement.querySelectorAll('.cell');
     const cell = cells[0]; // Select the first cell
     cell.click(); // Simulate cell click
@@ -45,6 +49,8 @@ describe('GameBoardComponent', () => {
   
     expect(robotService.getPosition()).toEqual({ x: 0, y: 4, direction: 'NORTH' }); // Verify position
     
+
+    // Test (1,2)
     const cell2 = cells[7]; // Select the 10th cell (0-based index)
     cell2.click(); // Simulate cell click
     fixture.detectChanges();
@@ -53,7 +59,7 @@ describe('GameBoardComponent', () => {
   });
   
   
-
+  // MOVE
   it('should move the robot when Move button is clicked', () => {
     component.placeRobot(2,3);
     fixture.detectChanges();
@@ -66,6 +72,7 @@ describe('GameBoardComponent', () => {
     expect(robotService.getPosition()).toEqual({x:2,y:4,direction:"NORTH"})
   });
 
+  // LEFT
   it('should turn the robot left when the Turn Left button is clicked', () => {
     component.placeRobot(2, 3);
     fixture.detectChanges();
@@ -89,6 +96,7 @@ describe('GameBoardComponent', () => {
     expect(robotService.getPosition()?.direction).toEqual('NORTH');
   });
   
+  // RIGHT
   it('should turn the robot right when the Turn Right button is clicked', () => {
     component.placeRobot(2, 3);
     fixture.detectChanges();
@@ -108,6 +116,7 @@ describe('GameBoardComponent', () => {
     expect(robotService.getPosition()?.direction).toEqual('WEST');
   });
 
+  // REPORT
   it('should display the robot position and direction when Report button is clicked', () => {
     component.placeRobot(1, 1);
     fixture.detectChanges();
@@ -120,6 +129,7 @@ describe('GameBoardComponent', () => {
     expect(reportText.textContent).toContain('Output: Robot is at (1, 1) facing NORTH');
   });
   
+  // MUST PLACE TO INTERACT
   it('should do nothing if robot has not been placed', () => {
 
     const leftButton = fixture.nativeElement.querySelector('button:first-child');

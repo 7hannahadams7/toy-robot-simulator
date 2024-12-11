@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-game-board',
   standalone: true,
-  imports: [CommonModule], // Add CommonModule here
+  imports: [CommonModule],
   templateUrl: './game-board.component.html',
   styleUrls: ['./game-board.component.css'],
 })
@@ -25,12 +25,12 @@ export class GameBoardComponent implements OnInit {
   grid: number[][];
   robot: { x: number; y: number; direction: string } | null = null; // Robot starts as null
   report: string = 'Robot has not been placed.'; // Initialize with a default message
-  showReport: boolean = false;
+  showReport: boolean = false; // Default to not showing report
 
   constructor(private robotService: RobotService) {
     this.grid = Array(5)
       .fill(null)
-      .map(() => Array(5).fill(null)); // Creates a 5x5 grid
+      .map(() => Array(5).fill(null)); // Create a 5x5 grid
   }
 
   ngOnInit() {
@@ -38,42 +38,46 @@ export class GameBoardComponent implements OnInit {
   }
 
   updateRobotPosition() {
-    this.showReport = false
+    this.showReport = false // Any changes to the robot will turn off the report
     const position = this.robotService.getPosition();
     if (position) {
-      this.robot = position; // Update the robot's position if it exists
-    } else {
-      this.robot = null; // Set robot to null if it hasn't been placed
+      this.robot = position; // Update the robot's position if it's been placed
     }
+    //  else {
+    //   this.robot = null; // Set robot to null if it hasn't been placed
+    // }
   }
   
 
   moveRobot() {
+    // Service iterates robot forward, component syncs position
     this.robotService.moveForward();
     this.updateRobotPosition();
     console.log(`MOVE`)
   }
 
   turnRobot(direction: 'LEFT' | 'RIGHT') {
+    // Service turns robot in direction, component syncs position
     this.robotService.turn(direction);
     this.updateRobotPosition();
     console.log(`REPORT`)
   }
 
   placeRobot(x: number, y: number) {
-    // Place the robot using the RobotService
+    // Service places robot, component syncs position
     this.robotService.placeRobot(x, y);
-    this.updateRobotPosition(); // Sync robot's position with the service
+    this.updateRobotPosition();
     console.log(`PLACE ${x}, ${y} ${this.robot?.direction}`);
   }
 
   generateReport() {
     console.log(`REPORT`)
+    // If robot placed, displays (x,y,F), if not says 'Robot has not been placed'
     if (this.robot) {
       this.report = `Robot is at (${this.robot.x}, ${this.robot.y}) facing ${this.robot.direction}`;
       console.log(`Output: ${this.robot.x}, ${this.robot.y} ${this.robot?.direction}`)
     }else{
-      console.log(`Robot not placed`)
+      console.log(`${this.report}`)
     }
     this.showReport = true
   }  

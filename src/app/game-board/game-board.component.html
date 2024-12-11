@@ -1,33 +1,35 @@
 <div class="game-board">
-    <div class="console-box">
+
+    <!-- Instructions -->
+    <div class="text-box">
         <h4>Click to place the robot, use the buttons or arrows to move</h4>
     </div>
-<div class="grid">
-    <div *ngFor="let col of grid; let colIndex = index" class="row">
-      <div
-        *ngFor="let row of col; let rowIndex = index"
-        class="cell"
-        (click)="placeRobot(colIndex, grid.length - 1 - rowIndex)"
-        >
-        <img
-        *ngIf="robot?.x === colIndex && robot?.y === grid.length - 1 - rowIndex"
-        [src]="'assets/images/robot-' + (robot?.direction | lowercase) + '.png'"
-        alt="Robot"
-        class="robot-image"
-      />
-      
-      </div>
+
+    <!-- GRID -->
+    <div class="grid">
+        <div *ngFor="let col of grid; let colIndex = index" class="row">
+            <div *ngFor="let row of col; let rowIndex = index" class="cell" (click)="placeRobot(colIndex, grid.length - 1 - rowIndex)">
+                <!-- Displays robot image only in correct box if placed, and uses image according to direction -->
+                <img *ngIf="robot?.x === colIndex && robot?.y === grid.length - 1 - rowIndex" [src]="'assets/images/robot-' + (robot?.direction | lowercase) + '.png'" alt="Robot" class="robot-image"/>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="controls">
-    <button class="main-control" (click)="turnRobot('LEFT')">Turn Left</button>
-    <button class="main-control" (click)="moveRobot()">Move</button>
-    <button class="main-control" (click)="turnRobot('RIGHT')">Turn Right</button>
-  </div>
-  <div class="controls">
-    <button class="secondary" (click)="generateReport()">Report</button>
-  </div>
-    <div class="console-box">
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="main-control" (click)="turnRobot('LEFT')">Turn Left</button>
+        <button class="main-control" (click)="moveRobot()">Move</button>
+        <button class="main-control" (click)="turnRobot('RIGHT')">Turn Right</button>
+    </div>
+
+    <!-- Report Button -->
+    <div class="controls">
+        <button class="secondary" (click)="generateReport()">Report</button>
+    </div>
+
+    <!-- Report Console -->
+    <div class="text-box">
         <p *ngIf="showReport">Output: {{ report }}</p>
     </div>
+
 </div>

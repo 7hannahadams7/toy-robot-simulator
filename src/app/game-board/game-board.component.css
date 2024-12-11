@@ -1,3 +1,5 @@
+
+/* DISPLAY */
 .game-board{
     display: flex;
     width: 794px;
@@ -13,23 +15,31 @@
 
 .grid {
     display: grid; /* Use grid layout */
-    grid-template-rows: repeat(5, 80px); /* 5 rows, each 50px tall */
-    grid-template-columns: repeat(5, 80px); /* 5 columns, each 50px wide */
+    grid-template-rows: repeat(5, 80px);
+    grid-template-columns: repeat(5, 80px);
     padding: 20px;
     gap: 1px;
 }
-  
-  .cell {
+
+.cell {
     width: 80px;
     height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #2B3538;
-    border: 1px solid #F1F2F2; /* Gray borders for visibility */
-  }
+    border: 1px solid #F1F2F2;
+}
 
-.console-box{
+.robot-image {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+
+/* CONTAINERS */
+.text-box{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,51 +51,41 @@
 }
 
 .controls {
-    display: flex; /* Flexbox for horizontal button alignment */
-    gap: 10px; /* Add spacing between buttons */
-    margin-top: 10px; /* Space between the grid and controls */
-  }
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+}
 
-/* General Button Styling */
+/* BUTTONS */
 button {
-    padding: 10px 20px; /* Add padding for size */
-    font-size: 1rem; /* Button text size */
-    cursor: pointer; /* Pointer cursor on hover */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effects */
-    border: none; /* Remove default borders */
-  }
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+}
   
-  /* Main Control Buttons */
-  button.main-control {
-    background-color: #4FAECB; /* Primary blue color from palette */
-    color: #1F2527; /* White text for contrast */
-  }
+button.main-control {
+    background-color: #4FAECB;
+    color: #1F2527;
+}
   
-  /* Secondary Report Button */
-  button.secondary {
-    background-color:#2B3538; /* Dark gray background */
-    color: #F1F2F2; /* Blue text */
-    border: 2px solid #4FAECB; /* Border matches primary blue */
-  }
+button.secondary {
+    background-color:#2B3538;
+    color: #F1F2F2;
+    border: 2px solid #4FAECB;
+}
   
-  
-  p {
+
+/* TEXT */
+p {
     margin: 20px;
     font-size: 1rem;
     font-family:Arial, Helvetica, sans-serif;
     color: #F1F2F2;
-    }
+}
 
 h4{
     margin: 20px;
     font-family:Arial, Helvetica, sans-serif;
     color: #F1F2F2;
 }
-  
-  
-    .robot-image {
-        width: 80%; /* Adjust to fit the cell */
-        height: 80%; /* Adjust to fit the cell */
-        object-fit: contain; /* Ensure the image scales properly */
-      }
