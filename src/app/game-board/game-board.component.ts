@@ -1,15 +1,4 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-game-board',
-//   imports: [],
-//   templateUrl: './game-board.component.html',
-//   styleUrl: './game-board.component.css'
-// })
-// export class GameBoardComponent {
-
-// }
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { RobotService } from '../robot.service';
 import { CommonModule } from '@angular/common';
 
@@ -43,12 +32,8 @@ export class GameBoardComponent implements OnInit {
     if (position) {
       this.robot = position; // Update the robot's position if it's been placed
     }
-    //  else {
-    //   this.robot = null; // Set robot to null if it hasn't been placed
-    // }
   }
   
-
   moveRobot() {
     // Service iterates robot forward, component syncs position
     this.robotService.moveForward();
@@ -68,6 +53,21 @@ export class GameBoardComponent implements OnInit {
     this.robotService.placeRobot(x, y);
     this.updateRobotPosition();
     console.log(`PLACE ${x}, ${y} ${this.robot?.direction}`);
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'ArrowUp':
+        this.moveRobot();
+        break;
+      case 'ArrowLeft':
+        this.turnRobot('LEFT');
+        break;
+      case 'ArrowRight':
+        this.turnRobot('RIGHT');
+        break;
+    }
   }
 
   generateReport() {
