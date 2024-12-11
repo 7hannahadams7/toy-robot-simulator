@@ -84,7 +84,7 @@ describe('RobotService', () => {
       { x: 4, y: 2, direction: 'EAST' as 'EAST', moveX: 4, moveY: 2 },
       { x: 0, y: 2, direction: 'WEST' as 'WEST', moveX: 0, moveY: 2 }
     ].forEach(({ x, y, direction, moveX, moveY }) => {
-      it(`should not move out of bounds ${direction})`, () => {
+      it(`should not move out of bounds ${direction}`, () => {
         service.placeRobot(x, y);
     
         // Change direction to point out of bounds
