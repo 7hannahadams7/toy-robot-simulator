@@ -28,26 +28,6 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 5. Interacting with the board in any way will remove the report until the REPORT button is pressed again. 
 6. The robot icons and arrows are made from images for clarity, one for each direction. 
 
-## Code Organization
-
-src/
-├── app/
-│   ├── game-board/                         # Game board component
-│   │   ├── game-board.component.ts             # Main component logic
-│   │   ├── game-board.component.html           # Template
-│   │   ├── game-board.component.css            # Styling
-│   │   └── game-board.component.spec.ts        # Unit tests
-│   ├── app.component.css                   # Main app - styling
-│   ├── app.component.html                  # Main app - template
-│   ├── app.component.spec.ts               # Main app - unit tests
-│   ├── app.component.ts                    # Main app - logic
-│   ├── robot.service.spec.ts               # Robot Service - unit tests
-│   └── robot.service.ts                    # Robot Service - robot logic and state
-├── assets/
-    └── images/                             # Images for robot icons (e.g., robot-north.png)
-
-
-
 # Angular Framework Notes
 
 ## Development server
